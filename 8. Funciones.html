@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+//que es una FUNCION?
+//es un bloque de codigo autocontenido, es decir que tiene su propio contenido
+//independiente al ambito global que se va a definir una sola vez y que se va a definir
+//en cualquier momento, es un fragmento de codigo que vas a declarar una ves y reutilzar
+//tantas veces como sea necesaria, ademas puede o no recibir parametros que son datos
+//que separas por comas y tbn puede devolver o no valores.
+//las funciones se consideran objetos, las funciones las puedes asinar como valor o retornar algun valor primitivo
+//puedes retornar la ejecucion de una función adicional, entonces se pueden pasar como argumentos, se pueden retornar como valores
+//como los arrays functions y vamos a ver la palabra reservada this
+//veamos las diferentes formas de declarar una funcion.
+//hay dos formas, funciones declaradas y funciones expresadas
+
+
+// DECLARACIÓN DE FUNCIONES
+
+//   function estoesunafuncion (){
+//         console.log("Uno");
+//         console.log("Dos");
+//         console.log("Tres");
+    // }
+   
+    // function unafuncionqueretornavalor(){
+    //     console.log("Uno");
+    //     console.log("Dos");
+    //     console.log("Tres");
+    //     return "La funcion ha retornado una cadena de texto";
+    // }
+    
+    
+//INVOVACION DE FUNCIONES
+        //  estoesunafuncion();  // los parentesis indican que una funcion se va a ajecutar
+        // let valordefuncion = unafuncionqueretornavalor();
+        // console.log(valordefuncion);
+           
+        // saludar("Luna", 13) //con parametros
+        // saludar(""); //sin parametros
+        // function saludar(nombre = "Gabriel", edad = 0){ //-->son los parametros
+        // console.log(`hola mi nombre es ${nombre} y tengo ${edad} de edad`);
+        // }
+       
+                                 //FUNCIONES DECLARADAS VS FUNCIONES EXPRESADAS
+        
+       // primera funcion para notar lo que hace Javascript
+          
+        //FUNCION ANONIMA: es una funcion que no tiene valor y ademas se la asignamos a una variable
+    
+        // const funcionexpresada = function (){
+        //     console.log("esto es una funcion expresada, es decir una funcion que no tiene valor y ademas se la asignamos a una variable ");
+       
+        //  //estas intentando acceder a una funcion antes de ser expresada sale error, debe ir al final
+        // }
+
+        // funcionexpresada();  
+        
+
+        // -------------------------------------------
+       
+        funciondeclarada();
+
+        function funciondeclarada(){
+            console.log("esto es una funcion declarada puede invocarse en cualquier parte de nuestro codigo, incluso antes de que la funcion sea declarada, si invocamos esta funciona antes de su definicion JAVASCRIPT nos dirá....");
+        }
+        // declarando una funcion asi, sin asigarle esa funcion a una variable javascript igual hace el llamado antes y despues de la declaracion.
+        funciondeclarada();
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

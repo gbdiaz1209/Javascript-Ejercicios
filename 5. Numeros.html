@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+let a = 2;
+let b= new Number(1);
+let c =7.19;
+let d="5.6";
+
+console.log(a,b);
+console.log(c.toFixed(1)); // indica cuantos decimales va a tener un valor y redondea 
+console.log(parseInt(c));// devuelve solo la parte entera del numero
+console.log(parseFloat(c)); //Devuelve parte entera y flotante
+console.log(typeof c, typeof d); //cnos dice que tipo es nuestra variable
+console.log(a+b);
+console.log(c+d); //aqui lo que pasa es que javascript concatena los valores pero no realiza la operacion porque la variable d es string
+//si deseo hacer esa operacion lo que tengo que hacer es convertir esa cadena a int ccon casting
+console.log(c + parseFloat(d));
+
+
+</script>
+
+</body>
+</html>

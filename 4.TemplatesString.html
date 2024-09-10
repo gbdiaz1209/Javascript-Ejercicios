@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+
+<script>
+
+//concatenacion (unir variables de tipo cadena) y la interpolación
+
+let nombre = "Luis Gabriel";
+let apellido = "Diaz";
+let saludo = "Saludo concatenado Hola mi nombre es " + nombre +" "+ apellido + "."
+ console.log(saludo);
+
+//interpolación: Es meter dentro de una cadena de texto el valor dinamicamente de una variablepara eso debemos
+// hacer uso de una herramienta TemplateString
+//acento invertido
+saludo2 = `Saludo interpolado  mi nombre es ${nombre} ${apellido}.`
+console.log(saludo2);
+
+//imprimamos una lista de viñetas que tenga las estaciones del año para eso colocamos la etiqueta <ul>y dentro lisstas <li>
+
+
+let ul = ` 
+    <ul>
+    <li>Primmavera</li>
+    <li>Verano</li>
+    <li>Otoño</li>
+    <li>Invierno</li>
+</ul> `;
+
+console.log(ul);
+
+</script>
+
+</body>
+</html>

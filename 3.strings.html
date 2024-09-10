@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+const nombre = { nombre:"Luis",edad: 35 }
+const apellido ="Diaz"
+const familiares = ["jhasney", "isabella"]
+const datospersonales = ["cedula:1067864095","telefono: 3225387093"]
+
+let name ="Isa"
+let apellidoisa="SEÑA"
+let saludo = new String ("Hola a Todos soy isabella");
+
+console.log(nombre);
+console.log(nombre.length, apellido.length, saludo.length);
+console.log(familiares, datospersonales)
+
+nombre.papa="Gabriel";
+nombre.mama="idailda";
+nombre.abuelos="Manuel, Maria, Ubadel y Elisa";
+familiares.push("Helen");
+datospersonales.push("email: gbdiaz1209@gmail.com")
+datospersonales.push("direccion: Cra 18W # 19-54")
+
+
+console.log (
+name.toUpperCase(), //CONVIERTE A MAYUSCULA
+apellidoisa.toLowerCase() //CONVIERTE A MINUSCULA
+);
+
+console.log("*******************************")
+const poema ="blablabla blablabla blabla bla bla blablaba";
+const poema2 ="lalalal lalalala lalelelele lelollelelelele";
+
+console.log (
+poema.toUpperCase(), //CONVIERTE A MAYUSCULA el texto del poema
+poema2.toLocaleLowerCase(), //CONVIERTE A MAYUSCULA el texto del poema
+);
+
+console.log(
+poema.includes("despunta"), //palabras que contiene el texto arroja true
+poema.includes("gato") //sino contiene la palabra el texto arroja false
+);
+
+poema.trim(); //quita los espacios al inicio y al final
+
+</script>
+
+</body>
+</html>
