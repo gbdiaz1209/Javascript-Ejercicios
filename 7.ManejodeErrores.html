@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+
+
+// try {
+//     console.log("En el try se agrega codigo a evaluar");
+//     console.log("Segundo mensaje del Try");
+//     noExiste;
+// } catch (error) {
+//     console.log("Catch, captura cualqueir error surgido o lanzado")
+  
+//     console.log(error);
+// }
+// finally{
+// console.log("el bloque finally se ejecutara siempre al final de un blique try catch")
+// }
+
+
+//COMO PODEMOS PERSONALIZAR NUESTRSO PROPIOS MENSAJES
+ try {
+    let numero = "y";
+    if(isNaN(numero)){
+    throw new Error("El Caracter  introducido No es un Numero");
+    }
+    console.log(numero * numero);
+    }
+     catch (error) {
+    console.log(`Se produjo el siguiente error:${error}`);
+ 
+ }
+
+</script>
+
+</body>
+</html>

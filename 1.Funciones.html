@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+                  //DECLARACION DE LAS FUNCIONES
+
+// function estoUnaFuncion(){
+//     console.log("uno");
+//     console.log("dos");
+//     console.log("tres");
+// }
+function FuncionRetornaValor(){
+    console.log("uno");
+    // return 19;
+    console.log("dos");
+    console.log("tres");
+    return "Esta funcion a retornado una cadena de texto";
+}
+
+//     // const valorDeFunción = unaFuncionQueDevuelveValor();
+//     console.log(valorDeFunción);
+
+            //INVOCACION DE LAS FUNCIONES FuncionRetornaValor
+// estoUnaFuncion();
+// FuncionRetornaValor();
+let valorDeFunción = FuncionRetornaValor();
+console.log(valorDeFunción); //De esta manera devuelve ese valor y  se imprime 
+                                // lo que esta en el return, porque hay varios console.log
+
+
+//FUNCION QUE RECIBE VALORES 
+
+
+// function saludar(nombre,edad){
+// console.log[`Hola mi nombre es ${nombre} y tengo ${edad} años`];
+// }
+
+// saludar("Isa",4);
+// saludar();
+
+console.log("--------------------------------");
+
+funcionDeclarada();
+
+//FUNCIONES DECLARADAS VS FUNCIONES EXPRESADAS
+function funcionDeclarada(){
+    console.log("esto es una funcion declarada puede invocarse en cualquier parte de nuestro codigoo incluso antes de la funcion sea declarada");
+    
+}
+
+funcionDeclarada();
+
+console.log("--------------------------------");
+
+//FUNCION EXPRESADA O EXPRESION ANONIMA PORQUE NO TIENE NOMBRE O ARRAY FUNCTION
+ 
+const funcionExpresada = function(){
+    console.log("ESTO ES UNA FUNCION EXPRESADA ES DECIR, UNA FUNCION QUE SE LE HA ASIGNADO COMO VALOR A UNA VARIABLE, SI INVOCAMOS ESTA FUNCION ANTES DE SU DEFINICION JAVASCRIPT NOS DIRA UN ERRO ASI QUE HAY QUE INVOCARLA DESPUES DE LA DECLARACION..");
+ }
+    funcionExpresada();
+
+</script>
+
+</body>
+</html>

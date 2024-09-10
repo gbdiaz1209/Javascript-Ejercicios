@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>MetodosEstaticos,GetterySetter</h1>
+<script>
+
+
+//las clases no reciben parametros. para recibir parametros debemos generar un metodo constructor
+class Animal {
+    constructor (nombre, genero){
+        this.nombre=nombre;
+        this.genero=genero;
+    }
+    //los metodos si pueden recibir parametros si los necesitan
+    sonar () { 
+    console.log(`Hago Sonidos porque soy un Animal`);
+    }
+
+    saludar(){      
+    console.log(`Hola me llamo ${this.nombre}`);
+    }
+}
+
+class Perro extends Animal{ //extendes es para decir de que clase hereda
+    constructor(nombre, genero, tamanio){
+        //Super: es un metodo que manda a llamar al constructor de la clase padre a class Animal
+        super(nombre, genero);
+        this.tamanio=tamanio; //atributo particular de la clase perro
+        this.raza= null;
+    }
+    //sobreescritura del verbo sonar
+   sonar(){
+        console.log("soy un perro y mi sonido es un ladrido");
+   }
+   ladrar(){
+        console.log("WUAO WUAO..!!");
+   }
+
+   //******************************
+//UN METODO ESTATICO ES AQUEL QUE TIENE
+// LA CAPACIDAD DE EJECUTAR SIN NECESIDAD DE INSTANCIAR
+// es decir, sin la necesidad de haber creado un objeto de tipo lo que sea para el ejemplo tipo (Perro)
+// podria ejecutar directamente mandando a llamar el nombre de la clase
+//vamos a que crear un metodo llamado queEres()
+//y como vuelvo a este mtodo estatico? de la siguiente manera
+
+static queEres(){
+    console.log("los perros somos animales mamiferos que pertenecemos a la familia de los caninos.");
+ }
+ get getRaza(){
+    return this.raza;
+}
+set setRaza(raza){
+this.raza = raza;
+}
+
+}
+Perro.queEres();
+
+//este es un metodo queEres puedo ejecutarlo sin la necesidad de haber creado un objeto del tipo al que pertenece la clase
+// QUE SON LOS GET Y LOS SET// son metodos especiales que nos permiten, obtener y establecer los valores de atributos de nuestra clase
+//es decir al momento que invocamos la creacion de un objeto o una nueva instancia
+//de ese objeto basado en la clase NO LO DEFINIMOS. los metodos especiales get y set 
+//para poder obtener el valor de la propiedad null se puede modificar u obtener el valor 
+//de es apropiedad incluso se pueden llamar igual.
+//entonces para saber que el metodo es OBTENEDOR Y ESTABLECEDOR le anteponemos el verb GET y SET
+//UN METODO OBETENER SU FUNCION ES RETORNAR ALGUN VALOR de la propiedad en cuestion
+//COMO LOS UTILIZAMOS? ANQUE SON METODOS JS LO RECONOCE Y LO UTILIZA COMO SI FUERA ATRIBUTO
+
+
+const mini = new Animal("Mini","Hembra"),
+     scooby = new Perro("Scooby", "Macho", "Gigante");
+
+    console.log(scooby); //solo scooby tiene la propiedad tamanio y hereda las dos de la clase Animal
+    scooby.saludar();
+    scooby.ladrar(); 
+ // scooby.getRaza(); aunque es un metodo, get es un metodo obtener y JS lo convierte  como una propiedad o atributo y arroja error   
+                  //entonces no puedo ejecutarlo como ejecuto un metodo. Debemos tratarlo como un atributo.
+                  // Para imprimir su valor debo mandarlo atraves de un consolelog
+    console.log(scooby.getRaza); 
+    scooby.setRaza = "Gran Danés";       //aqui le establezco un valor a raza y al final vuelvo a llamar al latributo y asi ha debido obtener el valor   
+    console.log(scooby.getRaza);        //primero null y luego el valor en este caso Gran Danes
+</script>
+
+</body>
+</html>

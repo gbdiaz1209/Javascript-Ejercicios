@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>ARROW FUNCTION</h1>
+<script>
+
+    //ARROW FUNCTION O FUNCIONES FLECHAS
+
+// 1. SON UNA NUEVA FORMA DE DEFINIR FUNCIONES ANONIMAS QUE SEAN EXPRESADAS
+// RECORDEMOS QUE ES UNA FUNCION EXPRESADA.
+//ES CUANDO A UNA VARIABLE LE ASIGNAS EL VALOR DE UNA FUNCION ANONIMA
+
+const saludo = function(){
+    console.log(`hola`);
+}
+
+saludo();
+
+//LA CARACTERISTICA ES QUE AL NO SER UNA FUNCION DECLARADA
+// QUE ES MAS function saludo(){
+//                    console.log(`hola_ saludo`);
+//                  }
+//                console.log(saludo);
+//LA INVOCACIÓN PUEDE HACER ANTES DE LA FUNCION.
+
+
+
+//PERO CUANDO TIENES UNA FUCNTION EXPRESADA DEBES HACER AL FINAL Y NO ANTES
+
+//UNA ARRAYFUNTCION ES SIMPLEMENTE QUITAR LA PALABRA (" FUNCTION ")
+// EL PARENTESIS Y LAS LLAVES
+
+const saludar = () => {
+    console.log(`hola_ saludar _ con arrow function `);
+}
+
+saludar();
+
+
+//PERO CUANDO TU FUNCION TIENE UNA SOLA LINEA DE EXPRESION
+//PUEDES OMITIR LAS LLAVES Y DEJARLO DE LA SIGUIENTE MANERA
+
+const saludndo = () => console.log(`hola _ saludando_ con arrow funtcion con una linea de expresion`);
+saludndo();
+
+// para recibir parametros una funcion flecha 
+//ponemos entre los parentesis 
+// el paso de los parametros e. si voy a saludar a una persona
+//pido el nombre
+
+const saludando=(nombre)=>console.log(`hola ${nombre} . arrow function pasandole parametos`);
+saludando("Ingeniero");
+
+//cuando una funcion flecha  recibe ´parametros toca quitarle los parametros al parentesis
+
+const hello = nombre => console.log(`hola ${nombre} con un solo parametros`);
+hello("Inge")
+
+//ESTO ES UN EJEMPLO DE LO QUE SE HACIA ANTES
+//LO QUE ES QUE EL ELEJEMPLO ANTERIOR TIENE EL RETURN IMPLICITO
+//TODO ESTO NOS PERMITE LAS ARROWFUNTCION, EVITANDO ESCRIBIR LA PALABRA FUNCTION Y RETURN
+
+const sumar = function(a,b){
+    return a + b;
+}
+
+ //y quedaria de la siguiente manera.
+ //ten en cuenta que en una suma el recibe dos o mas parameetros
+//  en este caso SI hay que colocarle los parentesis
+
+//y aqui se vuelve mas expresiva porque hago el return directametne 
+ const suma = (a,b) => a + b;
+ console.log (sumar(10,10));
+
+//*************************
+//En este ejemplo hay mas de lineas y No se puede hacer un return implicito
+//forzozamente debe llevar las llaves
+const funcionDeVariasLineas = () =>{
+    console.log("Uno");
+    console.log("dos");
+    console.log("tres");
+}
+
+funcionDeVariasLineas();
+
+//EN DONDE SON MAS INTERESANTES LAS ARROWFUNCTION
+//ITERANDO LOS ARREGLOS RECORDEMOS QUE ANTES LO HACIAMOS ASI
+
+const numero = [1,2,3,4,5];
+numero.forEach(function (el, index){
+    console.log(` ${el} el esta en la posicion ${index}`)
+})
+
+//PERO CON LAS ARROWFUNCTION LO HACEMOS ASI
+
+const numeros = [1,2,3,4,5];
+numeros.forEach((el,index) => console.log(`${el} esta en la posicion ${index}`));
+//ASI LAS ARROWFUNCTION VUELVEN MIUY EXPRESIVO NUESTRO CODIGO JAVSCRIPT
+//antes vimos una palabra reservada llamada THIS. EN EL CONTEXTO EN EL QUE SE ENCUENTREN
+
+function perra (){
+    console.log(this);
+}
+
+perra();
+
+/*como la funcion existe dentro del contexto del navegador, vemos 
+como this se vuelve el objeto windows
+pero si en lugar de tener una funcion yo tengo un objeto */
+
+const perro = {
+    nombre: "luna",
+    ladrar: function () {
+        console.log(this)       
+    }
+    
+}
+perro.ladrar();
+
+/* VEMOS COMO THIS EN ESTE CONTEXTO ES EL OBJETO A DIFERENCIA DEL OTRO
+THIS HACE REFERENCIA A ESTE OBJETO QUE TIENE DOS PROPIEDADES. 
+EL NOMBRE Y LA FUNCION QUE ES LADRAR
+
+que pasa? si transformo la function*/
+const perrito = {
+    nombre: "pepe",
+    ladrar: ()=> {
+        console.log(this)       
+    }
+    
+}
+perrito.ladrar();
+
+/* VEAN COMO EL OBJETO THIS YA NO ES EL OBJETO VUELVE HACER THIS DEL CONTEXTO GLOBAL.
+ES PARA ENTENDER ESE CONCEPTO DE LO QUE LO HACE LAS ARROWFUNCTION
+LAS ARROWFUNCTION '' TIENEN LA CAPACIDAD DE CAPTURAR EL CONTEXTO DEL OBJETO QUE SE ENCUENTA'''
+POR ESO HAY QUE TENER MUCHO CUIDADO CON UTILIZAR ARROWFUNCTION PARA DECLARAR
+METODOS DENTRO DE OBJETOS LITERALES. PORQUE TENEMOS ESE PEQUEÑO PROBLEMA
+VEAN COMO RESPETA EN UNA FUNCION NORMALITA COMO EL EJEMPLO DE LA LINEA 119
+LAS ARROW FUNCTION TIENEN LA CAPACIDAD DE SALTARSE EL CONTEXTO EN EL QUE ESTAN
+Y HEREDAR O RECONOCER EL CONTEXTO PADRE EN EL QUE HA SIDO DECLARADA
+
+LO QUE PASA ES QUE EN ESTE EJEMPLO QUISIERA DENTRO DEL OBJETO DAR UN MENSAJE. QUE PEPE LADRA
+NO ME SIRVE MUCHO PORQUE EL THIS, NO PUEDO PONERLE THIS.NOMBRE
+PORQUE LA ARROWFUNCTION ESSTA IGNORANDO EL CONTEXTO DEL OBJETO Y SE ESTA YENDO AL CONTEXTO DONDE SE
+ENCUENTRA DIRECTAMENTE ESE OBJETO QUE ES WINDOWS LA VENTANA DEL NAVEGADOR
+
+SE RECOMIENDA NO CREAR UN UN METODO EN UN OBJETO LITERAL A PARTIR DE UNA ARROWFUNCTION
+PORQUE TENEMOS EL PROBLEMA DEL CONTEXTO THIS
+entonces PODEMOS HACERLA ASI
+*/
+const dog = {
+    nombre: "Matty",
+    ladrar() {
+        console.log(this)       
+    }
+    
+}
+dog.ladrar();
+
+/*
+LE QUITAMOS LOS PUNTOS Y LA FLECHA PARA OBJETO LITERAL SE CREAN ASI
+CON ESTA NUEVA SINTAXIS Y NO HACERLA CON ARROWFUNCTION
+VE COMO ESTA NUEVA FORMA DE EXPRESAR SI RECONOCER EL CONTEXTO Y THIS VUELVE HACER EL OBJETO EN
+SI MISMO
+*/
+
+
+
+
+</script>
+
+</body>
+</html>

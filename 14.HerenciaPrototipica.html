@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>HERENCIA PROTOTÍPICA</h1>
+<script>
+/*EN LA CLASE PASADA VIMOS COMO CREAR UNA FUNCION CONSTRUCTORA
+QUE GENERE UN PROTOTIPO, ADEMAS DE COMO OPTIMIZAR LA CREACION DE METODOS, PARA CUANDO
+ESTEMOS GENERANDO OBJETOS AHORREMOS MEMORIA AL NO DUPLICAR METODOS
+HOY EXPLICAMOS LA HERENCIA. LA CAPACIDAD DE HEREDAR LAS CARACTERISTICAS DE UN PADRE A UN HIJO
+ESO SE DA EN LENGUAJES QUE ESTAN BASADOS EN CLASES. PERO JS ESTA BASADO EN PROTOTIPOS LA HERENCIA SE DA TAMBIEN 
+DE MANERA PROTOTIPICA
+*/
+
+function Animal (nombre, sexo){
+    this.nombre=nombre;
+    this.sexo=sexo;
+ } 
+    Animal.prototype.sonido = function(){      //Metodo Padre
+    console.log("Hago Sonidos, APFC puedo generar mas instancias");
+ }
+    Animal.prototype.correr = function(){      //Metodo Padre
+    console.log("Puedo Correr, Agregado al prototipo de la funcion constructora.");
+    }
+    console("ADVERTENCIA ESTE EJERCICIO NO ME ESTA GENERANDO BIEN LA HERENCIA ")
+   //HERENCIA PROTOTIPICA
+   /* Vamos a creae un prototipo Perro y vamos a crear una funcion para crear una instancia llamada perro
+   el va a heredar las caracteristicas de Animal
+   perro recibe como parametros nombre, edad y genero.. adicionalmente
+   genero una nueva que se llama raza
+   
+   //super es una variable que manda a llamar al constructor
+    de la clase padre creo una variable que va a colgar 
+    del this    //this va ser igual al prototipo 
+   ASOCIACION DE LA HERENCIA PROTOTIPICA
+    */
+ function Perro(nombre,sexo,raza){
+   this.super = Animal, //aqui solo invoque el constructo animal
+   this.super(nombre, sexo);
+   this.raza = raza; //atributo adicional
+   }
+   //perro esta heredando de animal
+   Perro.prototype = new Animal(); //generar una nueva instancia de la funcion animal 
+   Perro.prototype.constructor = Perro;// generamos su propia funcion constructor para igualarlo al constructor para que obtenga todas las caracteristas de su prototipo padre ANIMAL.
+
+   //Sobreescritura de Metodos del prototipo padre en el hijo para redifinir
+   Perro.prototype.sonido = function () {
+   console.log("Soy un perro y mi sonido es ladrar ");
+  }
+
+  Perro.prototype.ladrar = function () { //metodo exclusivo de la clase perro
+   console.log(" GUAGUAUGUAO ");
+  }
+
+   Perro.prototype.aullido = function () { //metodo exclusivo de la clase perro
+   console.log(" Aullido ");
+  }
+
+   const luna = new Animal("Luna","Hembra","Pitbull"),
+         pepe = new Animal ("Pepe","Macho");
+
+    
+    console.log(luna);
+    console.log(pepe);
+
+    luna.sonido(luna);
+    // luna.correr(luna);
+       
+    pepe.sonido(pepe);
+    // pepe.correr(pepe);
+
+    
+
+</script>
+
+</body>
+</html>

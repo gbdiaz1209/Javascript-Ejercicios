@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>Clases y Herencia Javascript</h1>
+<script>
+
+//las clases no reciben parametros. para recibir parametros debemos generar un metodo constructor
+class Animal {
+    constructor (nombre, genero){
+        this.nombre=nombre;
+        this.genero=genero;
+    }
+    //los metodos si pueden recibir parametros si los necesitan
+    sonar () { 
+    console.log(`Hago Sonidos porque soy un Animal`);
+    }
+
+    saludar(){      
+    console.log(`Hola me llamo ${this.nombre}`);
+    }
+}
+
+class Perro extends Animal{ //extendes es para decir de que clase hereda
+    constructor(nombre, genero, tamanio){
+        //Super: es un metodo que manda a llamar al constructor de la clase padre a class Animal
+        super(nombre, genero);
+        this.tamanio=tamanio; //atributo particular de la clase perro
+    }
+    //sobreescritura del verbo sonar
+    sonar(){
+        console.log("soy un perro y mi sonido es un ladrido");
+   }
+   ladrar(){
+        console.log("WUAO WUAO..!!");
+   }
+
+}
+const mini = new Animal("Mini","Hembra"),
+     scooby = new Perro("Scooby", "Macho", "Grande");
+
+     console.log(mini);
+     console.log(scooby); //solo scooby tiene la propiedad tamanio y hereda las dos de la clase Animal
+    
+     //  scooby.ladrar();
+    // scooby.sonar();
+    // scooby.saludar();
+    scooby.ladrar(); //Solo scooby puede ladrar
+       
+    
+    // mini.sonar();
+    // mini.saludar();
+    
+      
+
+    
+</script>
+
+</body>
+</html>

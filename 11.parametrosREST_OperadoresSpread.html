@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>ParametrosREST_OperadoresSpread</h1>
+<script>
+// PARAMETROS REST_
+// SON UNA FORMA DE VIRTUALMENTE DE IR AGREGANDO PARAMETROS INFINITOS DENTRO DE UNA FUNCION O UNA VARIABLE
+//... se agrega el parametros rest se hace con 3 puntos suspensivos
+
+//se hace un arreglo. el metodo foreach, se va a ejecutar por cada uno de los
+//  elementos que vengan de C
+//Aqui le digo que se lo sume a lo que ya vale resultado para que vaya siendo una 
+// sumatoria de los numeros que reciba
+
+function sumar(a,b, ...c){
+    let resultado = a + b;
+    
+  c.forEach(function (n){
+    resultado +=n
+  })
+
+
+  return resultado;
+}
+console.log(sumar(1,2));
+console.log(sumar(1,2,3));
+console.log(sumar(1,2,3,4));
+console.log(sumar(1,2,3,4,5));
+console.log(sumar(1,2,3,4,5,6));
+
+     // OPERADORES SPREAD - OPERADOR DE PROPAGACIÓN
+
+// NOS PERMITE CUANDO UNA EXPRESION LA TENGAMOS QUE EXPANDIR 
+// EN SITUACIONES ALMACENAR MULTIPLES ARGUMENTOS Y ELEMENTOS LO PODAMOS HTMLAnchorElement
+//UN EJEMPLO DE ESTO SERÍA CUANDO YA TIENES UN ARREGLO CON CIERTO NUMERO DE ELEMENTOS 
+//Y EN CIERTO MOMENTO RECIBES NUEVOS PARAMETROS 
+// ENTONCES ESTO SE HACE PARA NO ESTAR HACIENDO PUSH O CONCATENACIONES
+
+const numeros =[1,2,3,4,5];
+      numeros2 = [6,7,8,9,0,];
+
+      console.log(numeros, numeros2);
+
+      //DIGAMOS QUE TENEMOS UN TERCER ARREGLO
+
+      numeros3 = [...numeros, ...numeros2];
+      console.log(numeros3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

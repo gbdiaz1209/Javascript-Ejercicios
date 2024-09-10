@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>Objetos LITERALES</h1>
+<script>
+//LOS OBJETOS LITERALES:  SON UNA NUEVA DE ESCRIBIT ATRIBUTOS Y METODOS
+
+// ANTERIORMENTE TENIA UNA PAR DE VARIABLES SUELTAS
+
+let nombre = "Pepe";
+edad = 10;
+
+const perro ={
+    nombre: nombre,
+    edad:edad,
+    ladrar: function(){ //antigua forma de declarar una función
+        console.log("GUAU GUAU GUAU")
+    }
+}
+console.log(perro);
+perro.ladrar();
+console.log("********************+")
+// AHORA CON LAS NUEVAS CARACTERISTICAS si se declara una nueva función con ecma_6
+
+
+const dog ={
+nombre,
+edad,
+raza:"chanda",
+
+ladrar(){
+    console.log("AUU AUUUU AUUU")
+ }
+}
+
+console.log(dog)
+dog.ladrar();
+
+</script>
+
+</body>
+</html>

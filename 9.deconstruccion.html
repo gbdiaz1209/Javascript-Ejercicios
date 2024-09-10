@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>Deconstruccion</h1>
+<script>
+
+//ASI NO SE DEBERÍA HACER PARA TRABAJAR DINAMICAMENTE
+
+const number = [1,2,3];
+
+//SIN DESTRUCTURACION
+
+let uno = number[0];
+dos = number[1];
+tres = number[2];
+
+console.log(uno,dos,tres+"-Sin destructuración");
+
+console.log("**************");
+
+//CON DESTRUCTURACION
+
+const [one, two, three] = number;
+console.log(one,two,three+"-Con destructuración");
+
+// DESTRUCTUREMOS UN OBJETO PERSONA
+
+const persona ={
+    nombre:"Gabriel",
+    apellido:"Diaz",
+    edad:35
+}
+//IMPORTANTE EN EL CONSOLE DEBE ESTAR EXACTAMENTE ESCRITAS LAS VARIABLES TAL Y COMO SE DECLARAN EN EL OBJETO NO IMPORTA EL ORDEN LO IMPORTANTE ES QUE NO FALTE UNO PORQUE ARROJA ERROR
+let {nombre,apellido,edad} = persona;
+console.log(apellido, nombre,edad+"-DESTRUCTURACION DE UN OBJETO");
+
+
+
+</script>
+
+</body>
+</html>

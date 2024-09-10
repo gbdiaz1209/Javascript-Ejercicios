@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>prototipos - Funcion Constructora</title>
+
+</head>
+
+<body>
+<h1>PROTOTIPOS</h1>
+<script>
+
+/*PODEMOS USAR DIFERENTES PARADIGMAS EN JAVASRIPT EL PARADIGMA QUE MAS UTILIZA ES EL
+DE LA POO UNA CARACTERISTA MUY PARTICULAR EN JS ES MUY DIFERENTE BASADOS EN CLASES
+DENTRO DE LA POO HAY CUATRO CONCEPTOS  1. CLASES(MODELO A SEGUIR ALGO QUE NOS SIRVE COMO 
+ESQUEMA PARA BASARNOS Y LISTAR INSTANCIAS), 
+2. OBJETOS ES UNA INSTANCIA DE UNA CLASE (ATRIBUITOS Y METODOS) ES DECIR ES UNA COPIA
+DE ESE MODELO EL CUAL LO ESTAMOS UTILIZANDO EN EL MUNDO REAL
+EJEMPLO SI HAS UTILIZADO UN SOFT DE DISEÑO O EL ANTIGUO FLASH MANEJAN UNA BIBLIOTECA DE 
+SIMBOLO CUANDO TOMAS UN SIMBOLO ABRES LA BIBLIOTECA Y ARRASTRAS ESE SIMBOLO HASTA TU MESA
+O ESCENARIO, ENTONCES YA ESTAS TRABAJANDO CON UNA COPIA DE ESE SIMBOLO. HAS DE CUENTA 
+QUE LA CLASE AQUI ES ESE SIMBOLO QUE SE ENCUENTRA PREESTABLECIDO,
+CUANDO TU PASAS ESE SIMBOLO A TU AREA DE TRABAJO VA  A DECIR (INSTANCEOF) ES DECIR ES 
+UNA INSTANCIA. ES LA COPIA DE ESE MODELO. BASANDONOS EN LAS IDEAS DE PLATON "LAS COSAS 
+SON UNA REPRESENTACION FISICA DE LO QUE NOSOTROS LLAMAMOS". ES DECIR SILLA.
+ENTONCES LA CLASE ES EL MODELO A SEGUIR LO QUE PARA PLATON ES LA IDEA(SILLA, MESA, ANIMAL)
+EL OBJETO PARA HACER EN EL MUNDO REAL LE ASIGNAMOS ESE NOMBRE, ES LA INSTANCIA DE ESA 
+IDEA LOS OBJETOS VAN A TENER ATRIBUTOS. QUE SON PROPIEDADES ELLOS SON VARIABLES DENTRO 
+DE UN OBJETO Y LOS METODOS SON LAS ACCIONES O FUNCIONES QUE UN OBJETO PUEDE REALIZAR. 
+
+JAVASCRIPT ES UN LENGUAJE ORIENTADO A OBJETOS BASADO EN PROTOTIPOS Y NO EN CLASES AUNQUE 
+YA TENGAMOS CLASES A PARTIR DEL AÑO 2015 CON ECMA ESO ES UNA FORMA DE SIMPLIFICARNOS
+LOS PROTOTIPOS, ENTONCES AUNQUE YA TENGAMOS LAS CLASES JAVASACR TRANSFORMA ESA CLASE
+QUE HEMOS ESCRITO A UNA FUNCIONAL PROTOTIPAL.
+QUE ES UN PROTORIPO: ES UN MECANISMO POR EL CUAL UN OBJETO PUEDE HEREDAR DE UN OBJETO PADRE ATRIBUTOS Y METODOS ES DECIR FUNCIONES. DE HECHO LA HERENCIA SE DA  ATRAVES DE LA CADENA DE PROTOTIPOS
+DIGAMOS QUE HACE UNA COPIA DEL PROTOTIPO EN EL CUAL ESTA BASADO. */
+
+//  ESTO ES UN OBJETO LITERAL 
+// const perro ={
+//     nombre: "Pepe",
+//     edad:10,
+//     ladra(){
+//         console.log("GUAU GUAU")
+//     }
+// }
+// //  SI PENSAMOS AGREGAR OTRO OBJETO LITERAL TENDRIAMOS QUE HACER ESTO. COPIAR Y PEGAR LA ESTRUCTURA Y MODIFICAR LOS DATOS
+
+// const perro1 ={
+//     nombre: "Luna",
+//     edad:13,
+//     ladra(){
+//         console.log("GUAU GUAU")
+//     }
+// }
+// console.log(perro);
+// console.log(perro1);
+
+//PERO ESTO NO ES UNA OPERACION FUNCIONAL PENSANDO EN SI DEBO AÑADIR N CANTIDAD DE COSAS,
+//  ANIMALES ETC. QUE ES LO QUE ENTONCES SUGIERE JAVASCRIPT QUE DEBERIAMOS HACER?
+//  UNA FUNCION CONSTRUCTORA: // PORQUE SOLO LA CONSTRUYO UNA SOLA VEZ Y A PARTIR DE ELLA VOY A GENERAR NUEVAS INSTANCIAS O NUEVOS OBJETOS 
+// QUE SEAN DE ESTE TIPO DE FUNCION CONSTRUCTORA.
+
+// console.log("********************************************************************+***********")
+
+/* FUNCION CONSTRUCTORA DONDE ASIGNAMOS LOS METODOS.. AL PROTOTIPO, NO A LA FUNCION COMO TAL YA ESTO NO SE HACE PORQUE JAVASCRIPT A TRAVES DE LAS CLASES
+Y EL NODE.JS LAS ENTIENDE PERFECTAMENTE PERO ESTA ES LA ESCENCIA DE LA POO, LO IDEAL ES QUE NUESTRAS FUNCIONES CONSTRUCTORAS SOLO TENGA
+LOS ATRIBUTOS Y LOS METODOS LOS SAQUEMOS DE LA FUNCIONES Y LO PEGUEMOS AL PROTOTIPO */
+
+// console.log("VERSION 1 DE FUNCION CONSTRUCTORA");
+/* function Animal (nombre, edad, raza, genero){
+    
+    this.nombre=nombre;
+    this.edad=edad;
+    this.raza= raza;
+    this.genero=genero; 
+       this.ladrar = function(){      //Metodo Padre
+        console.log("Soy la funcion Padre Ladrar, Soy una Funcion Constructora y puedo generar mas instancias");
+    }
+    this.correr = function(){ //Otro Metodos que pueden adquirir esas instancias
+        console.log("Soy la funcion Correr, derivada de la Funcion Constructora Padre");
+    }
+}
+*/
+
+// console.log("VERSION 2 DE FUNCION CONSTRUCTORA");
+//Funcion constructora donde asignamos los metodos
+// al prototipo no a la instancia como tal
+
+function Animal (nombre, edad, raza, genero){
+    this.nombre=nombre;
+    this.edad=edad;
+    this.raza= raza;
+    this.genero=genero; 
+   
+} 
+ //console.log("METODOS AGREGADOS AL PROTOTIPO DE LA FUNCION CONSTRUCTORA"); /*si dejamos 
+//  el this.animal.ladrar por fuera va llamar  a Windows y como asignamos los prototipos, mandamos a llamar el nombre de la funcion constructora Animal y  acompañadode un Punto..
+//  debe ser  Animal.prototype.Ladrar */
+
+    Animal.prototype.ladrar = function(){      //Metodo Padre
+    console.log("Metodo Ladrar,de la Funcion Constructora Agregado al prototipo, puedo generar mas instancias");
+    }
+    Animal.prototype.correr = function(){      //Metodo Padre
+    console.log("soy otro el Metodo Correr, Agregado al prototipo de la funcion constructora.");
+    }
+//AQUI ES DONDE VAMOS A IR GENERANDO NUEVAS INSTANCIAS DE ESOS OBJETOS DE LA SIGUIENTE MANERA, aqui es donde entra la palabra reservada new el cual nos va a permitir crear una nueva instancia
+// DEL TIPO QUE QUERRAMOS (STRING, OBJECT, ARRAY, EN ESTE CASO DE TIPO ANIMAL)
+ 
+    const victoria = new Animal ("victoria","1","Pitbull","Hembra")
+    const caramelo = new Animal ("Caramelo","2","American_Pitbull","Macho")
+
+    // console.log(victoria);
+       console.log(caramelo);
+
+    // victoria.ladrar(victoria);
+    // victoria.correr(victoria);
+    
+    caramelo.ladrar(caramelo);
+    caramelo.correr(caramelo);
+
+/* Si miramos ambos ejemplos en el inspeccionardor del navegador podemos darnos cuenta de que el primer ejemplo es un objeto literal y su proto es Object y el ultimo ejemplo
+de la funcion constructora que son un objeto con propiedades pero que pertenecen a algo en este caso ANIMAL En vez de estar copi pegando la estructura de un objeto literal y vayamos a necesitar varias instancias de ese tipo que vayamos creando
+nos conviene hacer una funcion constructora. hay que tener en cuenta que ahora tenemos dos objetos y que hacen la misma funcion pero que tal que cuando
+nuestro codigo crezca esas funciones se van a duplicar lo correcto sería sacar el metodo de nuestra funcion constructora porque al tenerlo dentro
+cada vez que genero una nueva isntancia del tipo ANIMAL se esta duplicando y si tuviera otro metodo como SALTAR, SALUDAR ETC
+*/
+
+
+
+
+
+</script>
+
+</body>
+</html>

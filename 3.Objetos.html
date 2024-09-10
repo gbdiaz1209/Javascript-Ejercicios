@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+
+const b = {}
+    console.log(b);
+
+const luis = {
+    nombre:"Luis",
+    apellido: "Diaz",
+    edad: 35,
+    pasatiempos : ["Tocar_Guitarra","Netflix","Hacer_Ejercicio","Dar_Clases"],
+    casado: true,
+    contacto: {
+        email:"gbdiaz1209@gmail.com",
+        twitter: "gbdiaz12",
+        movil: "3225387093"
+    },
+    
+    saludar: function(){
+        console.log(`Hola amigos :) `)
+    },
+    
+    minombrees : function(){
+        console.log(`Mi nombre es ${luis.nombre} y mi apellido es ${luis.apellido} `)
+        console.log(`Hola amigos mi numero de celular es ${this.contacto.movil} `);
+    }
+}
+console.log(luis["nombre"])
+console.log(luis.contacto);
+console.log(luis.contacto["movil"]);
+console.log(luis.pasatiempos[1])
+
+
+luis.saludar();
+luis.minombrees();
+
+console.log(Object.keys(luis));// me permite listar todas las llaves del objeto
+
+console.log(Object.values(luis));//en vez de darme las llaves me da los valores
+
+console.log(luis.hasOwnProperty("nombre")); //si le pertenece una propiedad llamada nombre
+
+
+</script>
+
+</body>
+</html>

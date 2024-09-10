@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+
+let edad = 12;
+
+// if(edad >= 18){
+//     console.log("eres mayor de edad");
+// }
+// else{
+//     console.log("eres menor de edad");
+//     }
+
+//     console.log("OPERADOR TERNARIO --> ")
+
+    let eresMayor = (edad >= 18)? "Eres Mayor" : "Eres Menor";
+    console.log(eresMayor)
+    
+// buenos dias 6 horas - 11
+
+// buenas tardes 12horas - 18 horas
+
+// buenas noches 19 horas - 23 horas
+
+//estoy durmiendo 0 horas - 5 horas
+
+let hora = 10;
+
+if (hora >= 0 && hora <=5){
+    console.log("estoy dormido")
+    }
+    else if(hora >=6 && hora <= 11)
+    {
+        console.log("buenos dias")
+    }
+    else if(hora >=12 && hora <= 18)
+    {
+        console.log("buenos tardes")
+    }
+    else if(hora >=19 && hora <= 23)
+    {
+        console.log("buenos noches")
+    }
+    
+console.log("SWITCH CASE: NOS SIRVE CUANDO TENGAMOS QUE EVALUAR DIFERENTES VALORES PARA UNA MISMA VARIABLE");
+
+
+let dia = 7;
+
+switch (dia) {
+    case 0:
+        console.log("Domingo");
+        break;
+    case 1:
+        console.log("Lunes");
+        break;
+     case 2:
+        console.log("Martes");
+        break;
+    case 3:
+        console.log("Miercoles");
+        break;
+    case 4:
+        console.log("Jueves");
+        break;
+    case 5:
+        console.log("Viernes");
+        break;
+    case 6:
+        console.log("Sabado");
+        break;
+    default:  
+        console.log("El dia no existe");
+        break;
+}
+
+//DOMINGO - 0
+// //lUNES - 1
+// MARTES - 2
+// MIERCOLES - 3
+// JUEVES - 4
+// VIERNES - 5
+// SABADO - 6
+
+
+
+
+</script>
+
+</body>
+</html>

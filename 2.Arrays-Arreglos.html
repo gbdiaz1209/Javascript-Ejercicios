@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>FUNDAMENTOS DE JAVASCRIPT</h1>
+<script>
+    //en los objetos compuestos se accede a la referencia del valor
+    //como si fuera una coordinada 
+
+const a = [];
+const b = [1, true,"Hola",["A","B","C",[1,2,3]]];
+console.log(a);
+console.log(b);
+//imprmir solo Hola
+console.log(b[2]);
+//imprimir la C de un arreglo dentro de otro
+console.log(b[3][2]);
+//[3] arreglo padre [3] cuatro elementos posicion y si quiero imprmir 2 esta en la posicion 1
+console.log(b[3][3][1]);
+
+const c =Array.of("X","Y","Z",9,8,7)
+console.log(c);
+
+const d = Array(10).fill(false);
+console.log(d)
+
+console.log("----------------------")
+
+const colores = ["Amarillo","azul","Rojo"];
+console.log(colores)
+colores.push("Negro"); //agrega al ultimo elemento
+console.log(colores)
+colores.pop(); //quita al ultimo elemento
+console.log(colores)
+
+//voy a formar una lista de viñetas y quiero que cada color vaya en una list
+//esta es una array function
+colores.forEach(function(el,index){
+console.log(`<li id="${index}">${el}</li>`)
+});
+
+
+
+</script>
+
+</body>
+</html>
