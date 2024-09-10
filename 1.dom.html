@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>WEB APIs</title>
+
+</head>
+
+<body>
+<h1>DOM Introducción</h1>
+<h2>Web APIs </h2>
+<h2> DOM : Documento Object Model </h2>
+<h2>BOM: Broser Object Model</h2>
+<h2>CSSOM: CSS Object Model</h2>
+<h2>WEB APIs</h2>
+<ul>
+ <li>Eventos</li>
+ <li>Forms</li>
+ <li>AJAX - Fetch</li>
+ <li>History</li>
+ <li>Web Storage</li>
+ <li>Geolocation</li>
+ <li>Drag & Drop</li>
+ <li>Inderex DB</li>
+ <li>Canvas</li>
+ <li>MatchMedia</li>
+ <li>etc</li>
+</ul>
+<!-- <script > -->
+<script >/*vamos a empezar a trabajr con el objeto del DOM
+manejemos algunos conceptos del objeto*/
+console.log("******Elementos  del Documento******");
+
+console.log(document);//es la que nos muestra todas sus partes
+console.log(document.head);//con la anotacion del punto vamos a ir accediendo a los nodos del DOM
+console.log(document.body);
+//si queremos obtener la etiqueta html pero NO el mapeo del DOM completo
+console.log(document.documentElement);
+//podemos acceder al doctype
+console.log(document.doctype);
+//podemos acceder al juego de caracteres que tiene nuestro documento
+console.log(document.charset);
+//podemos acceder al titulo
+console.log(document.title);
+//podemos acceder a la lista de enlaces. hay un objeto que te devuelve una coleccion de elemnetos html
+console.log(document.links);
+//podemos acceder a imagenes
+console.log(document.images);
+//podemos acceder a formularios
+console.log(document.forms);
+//podemos acceder a las hojas de estilo
+console.log(document.styleSheets);
+//podemos acceder a sript de programacion
+console.log(document.scripts);
+//podemos acceder cuadno seleccionamos algo
+setTimeout(()=> {
+console.log(document.getSelection().toString());
+},3000);
+//esto nos muestra en consola el texto que hayamos seleccionado
+//el setTimeout es para que nos de tiempo de seleccionarlo
+//Esto es mala practica pero nos permite escribir en el documento
+document.write("<h2>Hola Mundo desde el DOM</h2>")
+
+
+
+
+
+</script>
+
+</body>
+</html>

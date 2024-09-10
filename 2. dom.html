@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Introduccion DOM</title>
+
+</head>
+
+<body>
+<h1>Web APIs </h1>
+<p>(Es aquella serie de objetos y mecanismos que tiene el lenguaje implementado en ciertas areas, para poder interactuar con todo lo que tiene el navegador)</p>
+<h2> DOM : Documento Object Model </h2>
+<p>  El DOM (Document Object Model, en español Modelo de Objetos del Documento) 
+es una API definida para representar e interactuar con cualquier documento HTML o XML.
+El DOM es una INTERFAZ estandarizada, el DOM solo se queda en el control de los 
+NODOS es un lenguaje demarcado que cada etiqueta para JS es un elemento y cada 
+elemento es un NODO del arbol del DOM.
+El DOM es un modelo de documento que se carga en el navegador web y que representa el
+documento como un árbol de nodos, en donde cada nodo representa una parte del documento
+(puede tratarse de un elemento, una cadena de texto o un comentario).
+El DOM es una de las APIs más usadas en la Web, pues permite ejecutar código en el 
+navegador para acceder e interactuar con cualquier nodo del documento. 
+Estos nodos pueden crearse, moverse o modificarse. Pueden añadirse a estos nodos 
+manejadores de eventos (event listeners en inglés) que se ejecutarán/activarán 
+cuando ocurra el evento indicado en este manejador.</p>
+<h2>BOM: Broser Object Model</h2>
+<p> NO se considera una APIs estandar, porque cada navegador internamente tienen distitnas formas de 
+    manejar ciertas cosas pero desde 2012 van sacarndo las mismas caracterisitcas y 
+    lo van soportando simultaneamente. toda esta api del browser object model vamos a poder hacer como 
+    detectar ubicacion del usuario, poder detectar en que posicion de mi ventana esta mi pantalla, el alto el ancho.
+    en estos tiempo no tenemos problemas de cpmpatibilidad ya Jquery ya no tiene sentido seguir utilizando
+    , porque lo que hacia antes jquery ya hoy lo hace JS, gracias a que las empresas que hacen los navegadores
+    se han estandarizados
+</p>
+<h2>CSSOM: CSS Object Model</h2>
+<p>Es una parte pequeña del DOM pero para manipular el CSS, En el CSSOM que entraría?
+    control del eventos de animacion, las mediaquerys, el objeto screen, que es el que controla
+    posicimiento de la ventana de nuestro navegador, el ancho el alto
+    Herramientas que permitan dar dinamicamnte estilo a nuestras interfaces web.
+    El DOM y el CSSOM estan relacionadas entre si.
+    digamoslo asi DOM es la manipulacion de html mediante codigo JS y
+    CSSON es la manipulacion de CSS mediante JS
+    es todo este conjunto de metodos, objetos e interfaces que tiene JS pára poder interractuar con el CSS</p>
+<h2>WEB APIs</h2>
+<ul>
+ <li>Eventos</li>
+ <li>Forms</li>
+ <li>AJAX - Fetch</li>
+ <li>History</li>
+ <li>Web Storage</li>
+ <li>Geolocation</li>
+ <li>Drag & Drop</li>
+ <li>Inderex DB</li>
+ <li>Canvas</li>
+ <li>MatchMedia</li>
+ <li>etc</li>
+</ul>
+<script>
+console.log(window);
+
+let texto = "Aprendiendo Javascript"
+
+const hablar = (texto) => speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+
+hablar(texto);
+
+//desde una api que ya tienen implementadas los navegadores pude activar el texto narrador
+//y asi como esta esta hay muchas cantidades. 
+</script>
+
+</body>
+</html>
