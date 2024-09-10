@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>ObjetoConsola</h1>
+<script>
+
+console.log(console);
+console.error("esto es un error");
+console.warn("esto es un aviso");
+console.info("hola esto es un console infor");
+console.log("log es un registro de lo que ha pasado en nuestra app");
+
+let nombre = "Gabriel",
+    apellido = "Diaz",
+    edad= 35;
+
+    console.log(nombre, apellido, edad);
+    console.log(`mi nombre es %s %s y tengo %s años`,nombre, apellido, edad);
+
+    // console.clear();
+    console.group("los cursos de gabriel ");
+    console.log("curso javascript")
+    console.log("curso node.js")
+    console.groupEnd();
+
+    console.groupCollapsed("los cursos de gabriel ");
+    console.log("curso javascript")
+    console.log("curso node.js")
+    console.groupEnd();
+
+    console.log(console);
+    console.table(Object.entries(console).sort());
+
+    
+
+</script>
+
+</body>
+</html>

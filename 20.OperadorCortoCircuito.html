@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+
+
+<h1>Operadores de Corto Circuito</h1>
+<script>
+//OR Cuando el valor de la izquierda 
+// en la expresion siempre pueda validar a true
+// es el valor que cargara por defecto
+// AND cuando el valor de la izquerda en la
+//  expresion siemrp pueda validar a dalse, es el
+// valor que cargara por defecto
+
+function saludar(nombre) {
+    nombre = nombre || "Desconocido"; //--> OPERADOR CCIRCUITO si viene definido nombre entonces el valor de la variable, va ser nombre y sino va ser desconocido
+    console.log(`hola  ${nombre}`);
+}
+saludar("GABRIEL");
+saludar();
+//VALORES QUE TIENEN A VERDADERO
+console.log("cadena"|| "valor de la derecha");
+console.log(10 || "valor de la derecha");
+console.log(true || "valor de la derecha");
+console.log([]|| "valor de la derecha");
+console.log({}|| "valor de la derecha");
+console.log("-----------------");
+//VALORE SQUE TIENDEN A FALSO
+console.log(false|| "valor de la derecha");
+console.log([]|| "valor de la derecha");
+console.log(undefined || "valor de la derecha");
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+    <html lang  ="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewpoort" content="width=device-width,
+    initial-scale=1.0">
+    <title>Fundamentos Javascript</title>
+
+</head>
+
+<body>
+<h1>MODULOS IMPORT / EXPORT</h1>
+<script>
+/*
+
+SON FUNCIONES QUE NO SOLAMTENTE LAS DEFINIMOS SINO TBN LAS ESTAMOS EJECUTANDO
+AL MOMENTO DE CREARLAS.  Y OBVIMANTE NO TIENEN NOMBRE.
+ES UNA MANERA EN LA QUE TU ARCHIVO CARGA EN EL NAVEGADOR SE EJECUTA LA PROGRAMACION QUE ESTA EN EL
+Y APARTE ESTSA PROTEGIDO DE EFECTOS SECUNDARIOS QUE PUDIERA TENER LA INVOCACION DE LIBRERIAS D ETERCEROS O LIBRERIAS QUE UNO MISMO HAYA HECHO
+Y QUE POR ESTAR TENIENDO NOMBRE SD EVARIBALES SIMILARES EVITAR TODO ESTO Y TE OBLIGA A PASAR PARAMETROS ZDE UNA MANERA MAS AMIGABLE
+EJEMPLO
+cdnjs.com y buscamos jquery
+y nos damos cuenta que todo el codigo de jquery esta en una funcino
+las funciones anonimas autoejecutables tbn nos van a permitir poder pasar
+parametros y utilizar alias en el cuerpo de nuestra funcion
+
+FUNCION ANONIMA AUTOEJECUTABLE
+Funcion con nombre se llama funcion nombrada
+*/
+// alert dentro de window es una funcion que tiene nombre y sus parentesis es la ejecucion
+
+// alert("Hola")
+
+// entonces como sería el cuerpo de una funcion que no tiene nombre y se autoejecuta?
+// (function  (){}) viene hacer como lo que representa el alert y luego los parentisis final ()
+// sería el que la ejecuta pero como es una funcion sin nombre hay que encapsularla en un parentesis
+//y asi se le crea una referencia en memoria. arriba el nombre de la funcion es alert
+// y la de abajo es una funcion anonima que no tiene nombre y el parentesis de afuera es el que ejecuta la funcion.
+//lo que yo necesite escribir para mi funcion debo abrir y desplegar las llaves.
+//al principio del curso deciamos que muchas veces los puntos y comas no son necesarios para separar nuestro codigo
+// en este caso esa regla No es asi!! porque vamos a tener una concatenacion de funciones que van a terminar siendo un dolor de cabeza
+// cada vez que tengas una funcion anonima autoejecutable punto y Coma  
+// yo podria tener una segunda funcion anonima 
+(function(){
+console.log("mi primera funcion anonima autoejecutable");
+//como funciona el paso de parametros? de igual manera en la definicion de la funcion
+})();
+//el primer parametro lo voy a llamar d, el segundo w y el tercero c
+(function(d,w,c){
+    console.log("mi segunda funcion anonima autoejecutable");
+//y en donde va a recibir esos parametros en el segundo parentesis
+//y aqui podemos decir que.
+console.log(d);
+
+console.log(w);
+
+console.log(c);
+c.log("este es un console log")
+})(document, window, console);
+
+//si yo mando por consola a d. ve que document lo pase por el primer parametro
+/*
+Antes de que llegaran los modulos, es decir mandar a llamar
+a archivos javascript dentro de otros y poder encapsular nuestro archivo a manera
+de metodos importados y exportados, digamos que esto era un patron, muy utilizado
+a la hora de crear modulos en JS, al inicio de esta clase 
+se hablo de los modulos de JQUERY y utilizar este patron
+por ahi puede que te encuentres maneras diferentes de escribir funciones anonimas
+autoejecutables voy a dejarlas aqui, la primera fue la clasica
+
+
+*/
+(function(){
+    console.log("Version Clasica")
+})();
+
+
+((function(){
+    console.log("Version Crockford")
+})());
+
+
++function(){
+    console.log("Version Unitaria")
+}();
+
+!function(){
+    console.log("Version Facebook")
+}();
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
