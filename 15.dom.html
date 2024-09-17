@@ -1,10 +1,9 @@
 <!DOCTYPE html>
     <html lang  ="es">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewpoort" content="width=device-width,initial-scale=1.0">
-    <title>Modificando Elementos (Old Style) </title>
+    <title>Flujo de Eventos (Burbuja y Captura) </title>
 <style>
 :root{
         --yellow-color:#F7DF1E;
@@ -37,10 +36,27 @@
 .sepia{
     filter: sepia(1)
 }
+
+.eventos-flujo div{
+padding: 4rem;
+font-size: 2rem;
+text-align: center;
+
+}
+
+.uno{
+    background-color:#F7DF1E;
+}
+.dos{
+    background-color:blue;
+}
+.tres{
+    background-color:red;
+}
 </style>
 </head>
 <body>
-<h1>Modificando Elementos (Old Style) </h1>
+<h1>Flujo de Eventos (Burbuja y Captura)</h1>
 
 <h2>DOM Introducción</h2>
 <h2>Web APIs </h2>
@@ -81,7 +97,7 @@
 </nav>
 
 <input type="text"name ="nombre" placeholder = "Nombre">
-<a class ="link-dom"  href ="11.dom.html"background-color:#F7DF1E; color:#222; data-id="1" data-description="Document Object Model">DOM</a>
+<a class ="link-dom" href ="15.dom.html" data-description="Document Object Model">DOM</a>
 <section class = "cards">
 <figure class="card">
  <img src="https://placeimg.com/200/200/tech" alt="Tech">
@@ -114,7 +130,30 @@
         <figcaption></figcaption>
     </figure>
 </template>
-<script src="js/dom1.js"> 
+<h3>Eventos en Javascript</h3>
+<h4>Manejadores de Eventos</h4>
+<button onclick="holaMundo()">Evento con atributos HTML</button>
+<br><br>
+<button id="evento-semantico">Evento con Manejador Semántico</button>
+<br><br>
+<button id="evento-multiple">Evento con Manejador Multiple</button>
+<br><br>
+<button id="evento-remover">Removiendo Eventos con Manejador Multiple</button>
+<br><br>
+<br><br>
+<h4>Flujo de Eventos </h4>
+<section class="eventos-flujo">
+    <div class="uno">
+        1
+    <div class="dos">
+        2
+     <div class="tres">
+        3
+            </div>
+        </div>
+    </div>
+</section>
+<script src="8.DOM_Document_Object_Model/js/dom1.js">
 
 </script>
 
