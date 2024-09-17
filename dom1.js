@@ -1176,28 +1176,238 @@ tambien quitamos el console.log($divsEventos);
 */
 
 
-function flujoEventos(e){
-    console.log(`HOLA TE SALUDA ${this.className}, el click lo originó 
-    ${e.target.className}`);
-  }
-  /*--> 1. el click del Listener lo voy asociar a todo el documento
+// function flujoEventos(e){
+//     console.log(`HOLA TE SALUDA ${this}, el click lo originó 
+//     ${e.target.className}`);
+  // }
+  /*--> 1. el evento click del Listener lo voy asociar a todo el documento
   lo desencadeno en una ArrowFunction, si omito los caption estoy en fase de burbuja
   mandamos a consola el evento que origina el evento.
   que hace esto? cualquier parte donde haga click dentro del dom
-  */
-  document.addEventListener("click", (e)=>{
-  console.log("Click en", e.target);
-  });
+  me dirá donde se hizo el click. 
+  comentando todo el resto del codigo y solo dejo esto aqui esta toda la clase*/
   
+  // document.addEventListener("click", (e)=>{
+  // console.log("Click en", e.target);
+
   // if(e.target.matches(".eventos-flujo div")){
   //   flujoEventos(e);
   // }
+
+  // if(e.target.matches(".eventos-flujo a"))
+  //   {
+  //     alert("Hola soy tu amigo y docente digital");
+  //      e.preventDefault(); 
+  //   };
+  // });  
   
-  // if(e.target.matches(".eventos-flujo a")){
-  //   alert("Hola soy tu amigo y docente digital");
-  // e.preventDefault();  
+  /* para desencadenar esta funcion de mi evento de mi enlace d jonmircha.com
+  lo que vamos hacer es buscar la coincidencia en el documento de algun selector
+  en un condicional y dentro de el ejecutamos codigo que necesitemos para cada elemento
+  del Dom que le vayamos asignar el evento click.  para eliminar el listener que 
+  tenemos aca del link de mi sitio vamos a decirle  
+  si.(objeto que originó el evento.matches(busca un selector valido) cual es?
+  la que tiene $linkeventos ->el enlace que esta dentro de la clase .eventos-flujo)
+  el metodo matches va a validar a true cuando presione este selector, entonces 
+  como valida a true lo metemos dentro de un condicional lo que quiero que se ejecute
+  en este caso es el alert: hola soy tu amigo y dg y el primer preventdefault*/
+
+  // if(e.target.matches(".eventos-flujo a"))
+  //   {
+  //     alert("Hola soy tu amigo y docente digital");
+  //      e.preventDefault(); 
+  //   };
+  // });  
+  
+  /* para el stoppropagation, como el document es el que tiene asignado el click 
+  siendo el nodo nuestro nodo raiz, pues ya no hay un elemento padre por encima de el
+  por eso ya no es necesario el stoppropagation().
+  si miramos en consola y doy un click fuera de este if, va a imprimir donde se originó
+  ese click, pero cuando le damos clic al enlace que dice jonmircha.com
+  - sale la alerta que dice Hola soy tu amigo y docente digital y ya no abre la pagina
+  porque lo detuvimos con el preventdefault y notamos a diferencia de las clases anteriores
+  como no hubo necesidad del stoppropagation que se le colocaron a los div
+  ya el codigo de la clase pasada lo podemos borrar, lo voy a dejar comentado para
+  recordar cual se cambió.
+  // $linkEventos.addEventListener("click", e => {
+//   alert("Hola soy tu amigo y docente digital");
+//   e.preventDefault(); 
+// });
+
+antes teniamos un foreach que asignaba dinamicamente un listener por cada div
+ahora lo que vamos hacer es poner otro condicional que diga
+si(el objeto que origina, el evento click en el document) es una div que esta
+dentro de la clase o section (.eventos-flujo)
+ejecutamos la funcion flujoEventos y le pasamos el evento para que nos diga
+hola te saluda this.className, el click lo origino${e.target.className}
+section que engloba todo el contenido html)
+NOTAMOS que coincide con el selector de la variable de $divEventos
+//const $divsEventos = document.querySelectorAll(".eventos-flujo div"),
+ya esas declaraciones de esas variables en este ejemplo no las necesitariamos
+)
+
+  // if(e.target.matches(".eventos-flujo div")){
+  //   flujoEventos(e);
   // }
-  // });
+
+ya no necesitamos el stopprogation ya que el evento a sido asignado al elemento padre
+que es el document. si revisamos en consola y le damos clic al div 3
+aparece este mensaje: HOLA TE SALUDA undefined, el click lo originó tres
+porque sale undefined? porque el this era cada una de las div y esas
+si tenian un atributo className pero en este caso el document no tiene un atributo className
+para comprobar que este this esta accediendo es al document de windows borramos 
+className de this y revisamos en consola aparece ahora este mensaje
+HOLA TE SALUDA [object Window], el click lo originó tres
+pero porque dice Object si le estoy asignando el evento clic al document
+recuerden que windows es el contexto globar y todo lo que este colgando al documen
+se lo estamos colgando es a windows
+
+en conclusion: con esta tecnica de la delegacion en lugar de haber 3 o 4 listener
+como antes que habia para cada div un addlistener mas el click del enlace
+solamente tengo la asignacion de un listener al evento clic del nodo principal
+que es document y con esta tecnica aparte de mejorar el rendimiento a nivel 
+de memoria y recursos de nuestra app  solo estamos teniendo una sola asignacion al 
+evento click. y la programcion que necesitemos ejecutar en cada uno de los elementos
+del DOM lo hacemos con un condicional vamos evaluando que coincida el selector
+con el que queremos que ese elemento aplique la programacion.
+otro detalle es que esta tecnica es muy importante para peticiones asincronas cuando 
+usamos AJAX o FETCH y generamos elementos dinamicos, mas adelante nos daremos cuenta
+que no podemos cargar un addlistener de un elemento que aun no esta cargado en el DOM
+Esta tecnica es super importante si por ejemplo mandas a solicitar ciertos datos a 
+una API y con eso datos generas elementos HTML dinamicos y luego esos 
+elementos que generaste dinamicamente con la peticion les asignas eventos.
+y la unica manera que existe para hacer esto es atraves de la delegacion de eventos
+ */
   
-  
-  
+
+//--------------- 18. Propiedades y Eventos -----------------------------------
+/* en clases pasadas empezamos a ver las caracteristicas de los eventos
+mas que solo cubrir el evento clic, mas lo que nos interesa es saber los conceptos
+basicos para poder trabajar con cualquier tipo de eventos
+cuando al principio de las clases del Dom hablabamos de las web Api
+deciamos que hay otra parte que no es standar pero ahora los navegadores las soportan
+que es BOM o el browser object model: que no es mas que una serie de metodos y objetos
+que cuelgan directamente de windows. si vemos hasta ahora hemos venido trabajando
+con document que es objeto JS que representa el arbol de nodos de elementos
+del documento html sin embargo hay una serie de propiedades y metodos y eventos 
+que son muy importante conocer que hacen referencia a la ventana del navegador
+es decir al objeto windows.
+como en todas clases hemos venido agregando  elementos html para poder trbajar
+pongamos un h3 con el titulo MANEJO DEL BOM 
+Y vamos a ver un par de propiedades que son importnates dentro de la ventana
+como podemos ver impresos en pantalla de estos elementos y tbn un console.clear
+para limpiar, el evento se llama resize y le pasamos una arrowfunction que le
+pase el evento e imprimos un mensaje  e imprimimos el evento para que veamos
+que es un evento resize de la ventana*/
+
+// window.addEventListener("resize", (e)=>{
+//   console.log("*****Event Resize*****");
+// console.clear();
+// console.log(window.innerWidth); //-> va a ser referencia al tamaño del ancho del viewport de nuesta ventana
+// console.log(window.innerHeight);//-> altura
+// //representa la parte visible, esta quitando toda la parte que no es del viewport como la caja de herramientas, marcadores, direcciones, titulos
+// console.log(window.outerWidth);
+// console.log(window.outerHeight); //-> tamaño que tiene la ventana de nuestro navegador
+// // console.log(window.scrollX);
+// // console.log(window.scrollY);
+// console.log(e);
+// });
+
+/* recargamos la pagina pero el mensaje aparace cuando redimensionamos la pagina */
+/* tambien podemos ver el control del desplazamiento del scroll
+ahora solo vemos una barra vertical.. creemos una barran horizontal en el codigo
+html en el h3 style, ahi ya vemos como se activa una barra horizontal
+al momento de redireccionamiento el scroll no es un buen momento para que aparezca
+// ps la ventana tiene un evento llamado scroll, asi esas dos propiedades scrollX y ScrollY
+// las pasamos al otro evento
+//  */
+// window.addEventListener("scroll", (e)=>{
+//   console.clear();
+//   console.log("***Evento Scroll****");
+//   console.log(window.scrollX);
+//   console.log(window.scrollY);
+//   console.log(e);
+// });
+/* podemos identificar en que cordenada empieza a dibujarse
+la ventana de tu navegador y para eso hacemos uso de las propiedades
+screenX & screenY estas propiedades se carguen en un evento que tiene la ventana
+se llama load. se ejecuta justamente cuadno haya terminado de cargar */
+// window.addEventListener("load", (e)=>{
+//   // console.clear();
+//   console.log("***Evento Load****");
+//   console.log(window.screenX);
+//   console.log(window.screenY);
+//   console.log(e);
+// });
+/* respecto de la carga en jquery teniamos en JQUERY
+$(window).load(funcionaejecutar);
+$(window).ready(funcionaejecutar);
+$(window).on(funcionaejecutar);
+
+para estas sintaxis el document tiene un objeto que funciona muy parecido al window
+pero trabaja mas rapido y de hecho es mas apropiado trabajarlo en lugar del evento load
+
+objeto , asignamos el evento, hagamos que imprima los mismos valores
+quitemos el console.clear porque limpiarian la consola y no vamos a ver cual carga mas rapido*/
+
+// document.addEventListener("DOMContentLoaded", (e)=>{
+//   // console.clear();
+//   console.log("***Evento DOMContentLoaded****");
+//   console.log(window.screenX);
+//   console.log(window.screenY);
+//   console.log(e);
+// });
+/* como vemos en consola el DOMContentLoaded carga mucho mas rapido
+en su tipo: de quien origina el evento es el document
+mientras que en Load pareciera que es el mismo document el evento que origina es Load
+path: representa el recorrido del elemento para llegar al elemento que lo origina
+y cargar en load fue window y en DOMContentLoaded carga dos [document y despues window]
+primero carga el dom y luego al padre por la propagacion del evento */
+
+// -------------------------> 19. DOM METODOS <--------------------
+/* en la clase pasada empezamos a ver el manejo de las propiedades del BOM
+BROWSER OBJECT MODELS que es una parte del JS de los navegadores que nospermite 
+manejar algunas propiedades y eventos de la ventana del navegador como tal de nuestra app
+los metodos alert, confirm y promp que ya vimos en las primeras clases forman parte
+de algunos metodos que podemos utilizar dentor del manejo de DOM
+Para que este ejrcicio quede completado sabemos que window alert nos manda una alerta
+y una alerta se compone de un mensaje de texto y un boton de aceptar, tenemos la confirmacion
+es una cajita que nos va a mandar un mensaje y un boton de guardar o cancelar
+eso significa que podemos almacenar la confirmacion o cancelacion en una variable
+y si das aceptar ella va a validar a true esta variable y si das cancelar validaria a false
+y finalmente tenemos el prompt o el aviso que es un mensaje de texto que dentro tiene su botno de aceptar o cancelar
+por ende valida a true o false y que adicionalmete nos agrega como un input el cual
+el usuario nos puede escribir algo. si tu guardas el prompt en una variable va almacenar el valor
+que el usuario este digitando
+recuerda que estos metodos cuelgan de window asi que no es necesario colocar window.alert
+veamos entonces un par de metodos mas que pudieramos utilizar en algun momento
+para ello voy a crear 3 botones en html, abri, cerrar e imprimir ventana
+vamos a programar un listener para trabajar ccon dichos botones
+debemos crear una variable para cada boton, despues le asignamos un listener a cada boton
+obviamente al evento click*/
+
+const $btnAbrir = document.getElementById("abrir-ventana"),
+$btnCerrar = document.getElementById("cerrar-ventana"),
+$btnImprimir = document.getElementById("imprimir-ventana");
+
+
+let ventana;
+
+$btnAbrir.addEventListener("click", e=>{
+//metodo para abrir una ventana
+ventana = open("https://jonmircha.com");
+});
+$btnCerrar.addEventListener("click", e=>{
+// closed(); //-->cierra la ventana donde nos encontramos, pero no cierra
+// la ventana que hemos abierto previamente para eso debemos guardarla en una variable
+// que de inicio let ventana y esa variable le asignamos el valor de open
+//ya se sabe que referencia esta almacena en esa variable
+ventana.close();
+});
+$btnImprimir.addEventListener("click", e=>{
+print();
+});
+
+
+
+
