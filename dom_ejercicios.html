@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios del DOM</title>
+    <!-- Hojas de Estilo propia y la de hamburguer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.css">
+    <link rel="stylesheet" href="css/dom_ejercicios.css">
+</head>
+<body>
+    <!-- cabecera header con un h1 de titulo EDom -->
+    <header class="header">
+        <h1>Ejercicios de DOM</h1>
+    </header>
+    <!-- boton que nos trajimos de la pagina hamburguer css https://jonsuh.com/hamburgers/-->
+     <!-- agregamos un selector panel-btn con esta clase le voy a dar ciertos estilos -->
+    <button class="panel-btn hamburger hamburger--vortex" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <!-- panel con un menú con puros enlaces internos por eso el # -->
+      <aside class="panel">
+        <nav class="menu">
+            <!-- a[href="Seccion$">*5{Sección$} -->
+            <a href="#seccion1">Sección 1</a>
+            <a href="#seccion2">Sección 2</a>
+            <a href="#seccion3">Sección 3</a>
+            <a href="#seccion4">Sección 4</a>
+            <a href="#seccion5">Sección 5</a>
+        </nav>
+        </aside>
+        <main>
+            <!-- etiqueta main con unos id para cada uno de los enlaces que estan arriba -->
+            <!-- section#section$.section*5>h1{Section$} abreviatura-->
+            <section id="seccion1" class="section">
+                <h2>Sección 1</h2>
+            </section>
+            <section id="seccion2" class="section">
+                <h2>Sección 2</h2>
+            </section>
+            <section id="seccion3" class="section">
+                <h2>Sección 3</h2>
+            </section>
+            <section id="seccion4" class="section">
+                <h2>Sección 4</h2>
+            </section>
+            <section id="seccion5" class="section">
+                <h2>Sección 5</h2>
+            </section>
+            </section>
+            <!-- nuestro script de tipo modulo -->
+             <script src="/9.MenuHamburguesa/dom/index_dom.js" type="module"></script>
+        </main>
+      </aside>
+   
+</body>
+</html>

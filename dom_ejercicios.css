@@ -1,0 +1,138 @@
+/* maqueta */
+/* ------------------RESET CSS --------------
+lo primero que hago es declarar una serie de variables css que me van a servir */
+:root {
+    --main-font: sans-serif;
+    --font-size:16px;
+    --main-color:#f7df1e;
+    --second-color:#222;
+    --main-modal-color:rgba(247,222,30,0.85);
+    --second-modal-color:rgba(34,34,34,0.85);
+    --container-width: 1200px;
+}
+html {
+    box-sizing: border-box; /*tamaño de la caja a border box*/
+    font-family: var(--main-font);/*familia de fuente, igual a la que tengo en la variable main-font*/
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+    /*permite el desplazamiento hacia arriba y hacia abajo lentamente sin hcaerlo burscamente*/
+}
+/*haremos que estos elementos html hereden el box sizing*/
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+ }
+    /*resetiamos el marggin a 0*/
+body {
+    margin: 0;
+    overflow-x: hidden;
+    /*para que todo lo que se desborde en horizontal se oculte 
+    y no nos genere la barra de desplazamiento*/
+}
+/*imagenes que se ajusten a la maxima anchura de su contenedor*/
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+/*Todos estos estilos que aplique son para el menu hamburguesa*/
+.header {
+    position: sticky; /*lo que hace es que cuando el header 
+    llegue a 0 en el margen de top se va a comportar como si estuviera fija*/
+    top: 0;
+    padding: 1rem;
+    background-color: var(--main-color);
+    color:var(--second-color)
+}
+/*reseteamos los h1*/
+.header h1{
+    margin: 0 auto;
+    text-align: center;
+}
+/*hagamos que cada titulo que dice seccion aunque 
+no tengan contenido ocupen el tamaño de pantalla
+esas etiquetas section tienen una clase llamada section*/
+.section {
+    padding: 2rem;
+    padding-top: 4rem; /*es para que la cabecera 
+    como esta con stiky no encime con el primer contenido que es titulo
+    seccion 1*/
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;
+    text-align: center;
+    /*cada seccion ocupa el tamaño del viewport*/
+}
+/*si yo quisiera que el menu saliera de arriba, el panel que es el elemento a moverse le
+aplico una transformacion*/
+.panel{
+    position: fixed;
+    z-index: 998;
+    background-color: var(--second-modal-color);
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    width: 100%;
+    background-color: var(--second-modal-color);
+    /* opacity: 0; */
+    transition: transform 0.3s ease; /*, opacity .3 ease;*/
+    /*se esconde arriba, si le ponngo 50 se ve la mitad*/
+    transform: translate(0,-100%);/*traslate recibe X y Y */
+    /*de abajo*/
+     /* transform: translate(0,100%) ; */
+     
+     /* transform: translate(100%,0) ; */
+}
+ /*una clase que le voy agregar o quitar al panel*/
+ .panel.is-active{
+    transform: translate(0,0);
+    opacity: 1;
+ }
+
+.panel-btn{
+    position: fixed; /*va a estar posicionado de manera fija a la esquina inferior derecha 
+    z-inder: nivel de profundidad, genero que el texto que se genere por detras del boton 
+    y una anchura en rem para que sea proporcional un cuadrado pero con bordes redondiados, flex box es para que las lineas del boton se center perfectamente
+    y un color de fondo*/
+    z-index: 999;
+    bottom: 1vh;
+    right: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+ 
+}
+/*Demosle estilos al nav menu*/
+.menu{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align:center ;
+}
+/*enlaces que estan dentro del menú le damos estilos*/
+.menu a {
+    padding: 2rem;
+    width:inherit;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    transition:all 0.3s ease;
+}
+/*estilos para seudo clase hover del enlace*/
+.menu a:hover {
+    font-weight: bold; /*cambia el color*/
+    color: var(--second-color);
+    background-color: var(--main-modal-color);
+}
