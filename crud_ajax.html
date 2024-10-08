@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD API REST AJAX</title>
+</head>
+<body>
+    <h1>CRUD API REST AJAX</h1>
+    <section class="crud">
+    <article>
+        <h2 class="crud-title">Agregar Santos</h2>
+        <form class="crud-form">
+        <input type="text" name="nombre" placeholder="nombre" required>
+        <br>
+        <br>
+        <input type="text" name="costelacion" placeholder="costelación" required>
+        <br>
+        <br>
+        <input type="submit" value="Enviar">
+        <input type="hidden" name="id">
+    </form>
+    </article>
+    <article>
+        <h2>Ver Santos</h2>
+        <table class="crud-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Constelaciones</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </article>
+</section>
+<template id="crud-template">
+    <tr>
+        <td class="name">Seiya</td>
+        <td class="constellation">Pegaso</td>
+        <td>
+            <button class="edit">Editar</button>
+            <button class="delete">Eliminar</button>
+        </td>
+    </tr>
+</template>
+<script>
+    const d = document,
+    $table = d.querySelector(".crud-table"), //guarda en este var el elem q tenga la clase c-table
+    $form = d.querySelector(".crud-form"), //guarda en este var el elem q tenga la clase c-form
+    $title = d.querySelector(".crud-title"),  //guarda en este var el elem q tenga la clase c-title
+    $template = d.getElementById("crud-template").content, //no me interesa su selector sino el contenid
+    $fragment = d.createDocumentFragment();// guardamos todo en un fragmento y luego insertar al DOM
+
+/*para hacer el crud en ajax tendriamos que hacer todos los pasos de maquetacion 
+como hicimos en los primeros ejercicios de ajax, pero para no hacer eso creamos una 
+funcion que encapsule todos y pida todos los elementos necesarios
+creamos una funcion expresada dentro de una constante, 
+const ajax = (options)=>{
+le voy a pasar un objeto al que voy a llamar
+options. vamos a usar la destructuracion. voy a destructurar este objeto llamado option
+en varios elementos, que es lo que vamos a pedir para cada peticion?
+1. la url, el metodo de envío, y el suceso en caso de exito, 
+error en caso d error  -- 
+ y finalmente 
+si tenemos q enviarle datos a la peticion  (get, put, delete etc) options es para que cada vez
+que ejecutemos nuestra funcion ajax.
+2. despues creamos el objeto xhr que va ser igual al objeto XMLHttpRequest, 
+const xhr = XMLHttpRequest();
+despues vamos asignar
+3. el addeventlistener(readystatechange) dentro de una arrowfunction
+4. ejecutamos el metodo open que necesita la variable method
+xhr.open(method || "GET", url);
+ y si el usuario no me especifica un metodo
+en articular usamos un operador de corto circuito de tipo OR diciendo que si el parametro method viene vacio
+entonces lo que el usuario quiere es acceder al metodo get 
+luego vamos abrir la url que venga en la variable url
+agregamos una cabecera con .xhr.requestheader colcoando el nombre del atributo y su valor.
+si quitamos esta cabecera el json server que esta esperando  aplication json, no va a funcionar
+ y finalmente vamos a ejecutar el 
+ 5. el metodo send el cual vamos a mandar una data, el cual va hacer un codigo en formato json.
+ en el ejercicio de ajax con xmlhttpsrequest nos mandaba la respuesta el texto, pero al ser una 
+ respuesta de la API de jsonplaceholder de usuarios en formato json, entonces ahora a la inversa
+ en nuestro crud como en nuestra App Y NUESTRA API FALSA esta esperando recibir json, usamos
+ el metodo contrario. NOSOTROS LE ESTAMOS ENVAIDNO UN OBJETO JAVASCRIPT pero se lo vamos a convertir
+ a cadena de texto mediano JSON.stringify.
+ ahora programamos el listener y que va a pasar cuando detecte un cambio?
+     if(xhr.readyState!==4) return; validamos si veniamos cualquier numerp 200 que es uan respuesta existosa
+     en nuestra funcion ajx va a tener un atributo llamado success que va hacer una funcion
+     que trae todo el codigo que se ejecuta cuando ajx haya mandado un estado de servidor de tipo 200
+     caso contrario entonces ejcuta la funcion error
+     entonces URL es un string,
+     METHOD es un string, 
+     DATA es un object 
+     SUCCESS y ERROR son funciones
+     ahora nos copiamos el if, else  if(xhr.status > 200 && xhr.status < 300)
+     para este if en caso exito guardamos en una var json para convertir la Rpta a obj JS
+    copiamos este let json = JSON.parse(xhr.response.Text)
+    y por ultimo ejecutamos la funcion que nos pase el usuario con el metodo success y le pasamos la 
+    respueta ya convertida a formato javascript. para entender mejor este metodo en el ejercicio
+    anterior era cuando recorriamos con el foreach y agregamos por ultimo el fragmento toda esa programacion
+    aca sería todo en una funcion success y si el codigo no es de tipo 200 que pasa?
+    antes creamos un error, lo mandamos a un elemento del DOM que era innerHTML, hay que tener en cuenta
+    que para este ejercicio  nuestra funcion ajx no sabe de elementos de DOM por eso estoy creando una
+    funcion de tipo exitoso donde ahi ya voy a empezar a interactuar con el html para pintar lo que me devuelva
+    la respuesta. como tal mi funcion ajx solamente esta haciendo la operacion basica de una peticion
+    de tipo xmlhttprequest ya la parte de ensuciarse con el codigo html se hacer dentro de la funcion
+    success o en la funcion error.
+    entonces sguiendo con el ejercicio a veces las peticiones no nos mandan un mensaje en el status
+    text por eso es que utilizamos el operador OR para poner un error generico en caso de q no venga nada
+    en la propiedad e status text.
+    finalmente ejecutamos la funcion que el usuario me tiene que pasar que se va a ejecutar en caso
+    que exista un error y pasamos un mensaje que se imprime en alguna parte del dom
+    y asi he abstraido todos los pasos importantes de una peticion ajax, entonces fijemonos que anteriormente
+    teniamos que hacer todo ese codigo por cada peticion ajax, vamos a hacer todas las operaciones
+    de crud, ya que de cada una de esos metodos tuviera que hacer uan peticion ajax, yo tendria
+    que hacer 5 veces toda esta programacion y lo unico que va a cambiar son los elementos del dom
+    pero todo lo demas es exactamente igual para cualquiera de las peticiones, solo variable url
+    y el metodo.
+    vamos a programar nuestra primera operacion que sería que en esta tabla que tenemos en el dom 
+    dinamicamente imprima todos los SANTOS que tenemos en la base de datos. donde tendria que
+    ejecutarse eso? a la carga del DOM 
+    le vamos al final de la funcion ajx Y AGREGAMOS el DomCONtentload pero aqui no nos convendria
+    programar una arrowfuction o una funcion anonima, aqui nos sirve crear primero la funcion
+    y mandarla a llamar pensando en el put y luego en el get
+    entones creamos una funcion getAll y creamos un funcion expresada, que tendria que ocurrir 
+    en esta funcion getAll? aqui voy a ejecutar mi funcion ajx y ajax que me pide?
+    un objeto que se llama options y ese objeto que debe tener? el method en este caso el metodo
+    va ser por get, que otra cosa me pide? la url y cual es localhost:3000/santos
+    luego la funcion de exito succes que quiero que haga en caso que valide exitosa?
+    , la funcion de error y finalmente la data. como voy a sociliar todo no le mando ninguna peticion
+    fijense que a la hora de ejecutar success dentro de mi funcion ajax me esta devolviendo
+    la respuesta en formato json entonces dentro de la funcion getAll
+    en success le pasamos un parametro donde viene la respuesta "resp"
+y el error maneja un string error(`Error ${xhr.status}: ${message}`);
+ entonces le pasamos el parametro err.
+yo podria pasarle un console.log de resp y console.log de err
+como la peticion es get y en el operador de corto circuito esta el metodo gete si el operador no 
+nos lo da podemos quitarlo del metodo succes y los datos tbn porque lo unico que vamos es a obtener todo
+y para que el error html de todo lo que necesito interactuar.
+le decimos tengo la tabla y q ese mensaje lo inserte debajo de la tabla usando el metodo
+insertAdajacentHTML Y ubicamos con afterends y que me muestre el mensaje interpolando la var erro
+y ahora programamos en caso de exito.
+la variable res que es la respuesta me trae la informacion de los SANTOS POR CADA VEZ QUE TENGAS EXITO
+vamos a interecturar con el <template id="crud-template">
+por cada elemento que traiga la respuesta en ese template busca el selector llamado clase 
+name y en su contenido textual pones lo que viene en nombre, ese template lo tenemos que clonar
+para que se quede en memoria  y clonamos el nodo template, false si lo queremos vacio y true con
+el contenido y para no afectar el rendimiento creamos una variable fragmento para insertarlo 
+y a grego ese nodo clonado a ese fragmento. el fragment tendria todos esos elementos que se van a insertan 
+al dom. nuestra estructura tiene una etiqeuta llamada thead(cabeza) y un body(cuerpo) y un tbody
+que es donde me interesa insertarlo, todas las filas que genere con ese template. fuera del foreach
+le decimos a esa tabla que tengo guardad busca la etiqueta tbody y como contenido
+esos nodos que has creado a traves del fragment agregalos al tbody de la tabla.
+tambien en el foreach dentro de la etiqueta template tiene una clase que se llama constelation, esa clase la vamos a buscar
+y en su contenido textual vamos a poner el parametro constelacion que viene de la API.
+MUY IMPORTANTE es que a los botones editar y eliminar le pongamos data-atributes
+para cuando hagamos las otras tres operaciones un poco mas sencillas, cuando le demos click
+al boton editar los datos del santo pasen al formulario, entonces voy a buscar
+dentor del template el elemento que tiene la clase edit y le creo un data atributo 
+para acceder a los dataatributes es con dataset y luego el nombre, el id que voy editar
+como en la documentacion de json-serve nos pide que tengamos un id, ese id lo voy almacenar en 
+el boton que se va a allamar id el.id y nos inventamos un data atribute llamado name donde va el 
+nombre y data.constellation donde va la constelacion. y para eliminar un elemento solo
+nos va interesar saber su id.
+
+*/
+  
+  
+  const ajax = (options)=>{
+  let{url, method, success, error, data} = options;
+  const xhr = new XMLHttpRequest();
+  
+  /* programemos el listener que va a pasar cuando detecte un cambio, ps aqui vienen
+  todas esas validaciones que teniamos en el 1° ejercicio de xmlhttrequest*/
+  
+  xhr.addEventListener("readystatechange", e =>{
+    if(xhr.readyState!==4) return; 
+    //cuando el readystate sea igual a 4
+    
+    if(xhr.status > 200 && xhr.status < 300){               
+    //cuando la peticion sea 200 ejecutas este codigo
+    
+    let json = JSON.parse(xhr.response.Text); //convertir a objeto javascript la respuesta en formto json
+    success(json); //ejecutamos la funcion que nos pase el usuario en el metodo success
+    
+    } 
+    else
+    {
+        let message = xhr.statusText || " Ha ocurrido un Error";
+        error(`Error ${xhr.status}: ${message}`);
+    }
+});
+  xhr.open(method || "GET", url);
+  xhr.setRequestHeader("Content-type","application/json; charset=utf-8");   
+  xhr.send(JSON.stringify(data));
+   }
+ 
+ const getAll = ()=>{
+    ajax({
+         url:"http://localhost:3000/santos",
+        success:(res)=>{
+            console.log(res);
+
+            res.forEach(el => {
+                $template.querySelector(".name").textContent = el.nombre;
+                $template.querySelector(".constellation").textContent = el.constelacion;
+                $template.querySelector(".edit").dataset.id = el.id;
+                $template.querySelector(".edit").dataset.nombre = el.nombre;
+                $template.querySelector(".edit").dataset.constellation = el.constelacion;
+                $template.querySelector(".delete").dataset.id = el.id;
+                
+                
+           let $clone = d.importNode($template, true);
+           $fragment.appendChild($clone);
+
+         });
+           
+            $table.querySelector("tbody").appendChild($fragment);
+        },
+        
+        error:(err) => {
+            console.log(err);
+            $table.insertAdjacentHTML("afterend", `<p><b>${err}</b></p>`);
+        }
+       })
+      }
+ d.addEventListener("DOMContentLoaded", getAll);
+</script>
+</body>
+</html>
